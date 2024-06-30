@@ -55,7 +55,7 @@ class Calculator:
 class CashCalculator(Calculator):
     def get_today_stats(self) -> float:
         today_amount_money = super().get_today_stats()
-        return f"Сегодня потрачено {today_amount_money} руб."
+        return f"Сегодня потрачено {today_amount_money} рублей."
 
     def get_today_cash_remained(self, currency: str) -> str:
         money_spend_today = super().get_today_stats()
@@ -63,21 +63,21 @@ class CashCalculator(Calculator):
             case "rub":
                 if self.limit > money_spend_today:
                     diff = self.limit - money_spend_today
-                    info = f"На сегодня осталось {diff} руб."
+                    info = f"На сегодня осталось {diff} рублей."
                 elif self.limit < money_spend_today:
                     debt = money_spend_today - self.limit
-                    info = f"Денег нет, держись! Твой долг {debt} руб."
+                    info = f"Денег нет, держись! Твой долг {debt} рублей."
                 else:
                     info = "Денег нет, держись!"
             case "usd":
                 if self.limit > money_spend_today:
                     diff = (self.limit - money_spend_today) / USD_RATE
                     rounded_diff = round(diff, 2)
-                    info = f"На сегодня осталось {rounded_diff} долл."
+                    info = f"На сегодня осталось {rounded_diff} долларов."
                 elif self.limit < money_spend_today:
                     debt = (money_spend_today - self.limit) / USD_RATE
                     rounded_debt = round(debt, 2)
-                    info = f"Денег нет, держись! Твой долг {rounded_debt} долл."
+                    info = f"Денег нет, держись! Твой долг {rounded_debt} долларов."
                 else:
                     info = "Денег нет, держись!"
             case "eur":
